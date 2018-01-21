@@ -1,5 +1,5 @@
 package pl.com.lessons.file;
-
+zuza tu była 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
