@@ -1,7 +1,9 @@
 package pl.com.lessons.file;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -52,6 +54,40 @@ public class FileHelper {
                 listFilesRecursively(f.getAbsolutePath(), files);
             }
         }
+    }
+	public static void writeToFile(byte[] filePath, File file) throws IOException
+    {
+        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+        out.write(filePath);
+        out.close();
+    }
+	public static boolean moveFile(String inFile, String outFile)
+    {
+        if (inFile.equals(outFile))
+        {
+            return false;
+        }
+        File sourceFile = new File(inFile);
+        File destFile = new File(outFile);
+
+        boolean t = false;
+        if (destFile.exists())
+        {
+            sourceFile.delete();
+        } else
+        {
+            t = sourceFile.renameTo(destFile);
+        }
+        return t;
+    }
+	public static String readFileToString(String filePath) throws IOException
+    {
+        File file = new File(filePath);
+        FileInputStream fin = new FileInputStream(file);
+        byte fileContent[] = new byte[(int) file.length()];
+        fin.read(fileContent);
+
+        return new String(fileContent, ENCODING);
     }
 
 }
