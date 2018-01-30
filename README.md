@@ -1,1 +1,1 @@
-# Utility projekt dla przykładu
+# Utility dla przykładu :)
