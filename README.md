@@ -1,2 +1,3 @@
-# Utility dla przykładu :)
+﻿# Utility dla przykładu :)
 #kkkkkkkkk
+HOTFIX DO PRODUKCJI
