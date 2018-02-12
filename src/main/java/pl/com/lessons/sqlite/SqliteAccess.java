@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -23,7 +24,7 @@ public class SqliteAccess {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:C:/" + dbPath;
+            String url = "jdbc:sqlite:" + dbPath;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -38,7 +39,7 @@ public class SqliteAccess {
 
     public static void createNewDatabase(String dbPath) {
 
-        String url = "jdbc:sqlite:C:/" + dbPath;
+        String url = "jdbc:sqlite:" + dbPath;
 
         try {
             Connection conn = DriverManager.getConnection(url);
@@ -55,7 +56,7 @@ public class SqliteAccess {
 
     public static void createNewTable(String dbPath, String tableName) {
         // SQLite connection string
-        String url = "jdbc:sqlite:C:/" + dbPath;
+        String url = "jdbc:sqlite:" + dbPath;
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + "(\n"
@@ -76,7 +77,7 @@ public class SqliteAccess {
 
     public static void insert(String dbPath, String tableName, Integer id, String name, float capacity)
     {
-        String sql = "INSERT INTO " + tableName + "(name,capacity) VALUES(?,?, ?)";
+        String sql = "INSERT INTO " + tableName + "(id,name,capacity) VALUES(?,?,?)";
 
         try {
             Connection conn = connect(dbPath);
@@ -86,20 +87,40 @@ public class SqliteAccess {
             pstmt.setFloat(3, capacity);
             pstmt.executeUpdate();
         } catch (SQLException e) 
-        {
-            System.out.println("error " + e.getMessage());
+        { 
+        	System.out.println(e.getMessage());
         }
     }
 
-    
+    public static void selectAll(String dbPath, String tableName)
+    {
+    	String sql = "SELECT id, name, capacity FROM " + tableName;
+    	try 
+    	{
+    		Connection conn = connect(dbPath);
+    		Statement stmt  = conn.createStatement();
+    		ResultSet rs    = stmt.executeQuery(sql);
+    		while(rs.next())
+    		{
+                System.out.println(rs.getInt("id") +  "\t" + 
+                        rs.getString("name") + "\t" +
+                        rs.getDouble("capacity"));    			
+    		}
+		} 
+    	catch (Exception e) 
+    	{
+    		System.out.println(e.getMessage());
+		}
+    }
 
     public static void main(String[] args)
     {
-        /*
+/*
         createNewDatabase("develop-lessons/sqlite_db/test.db");
         createNewTable("develop-lessons/sqlite_db/test.db", "tabela1");
         connect("develop-lessons/sqlite_db/test.db");
-        */
-        insert("develop-lessons/sqlite_db/test.db", "tabela1", 1, "test1", 1);
+*/
+  //      insert("develop-lessons/sqlite_db/test.db", "tabela1", 1, "test1", 1);
+    	selectAll("develop-lessons/sqlite_db/test.db", "tabela1");
     }
 }
