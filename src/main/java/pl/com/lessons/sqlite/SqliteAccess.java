@@ -90,6 +90,24 @@ public class SqliteAccess {
             System.out.println("error " + e.getMessage());
         }
     }
+    
+      public void selectAll()
+      {
+            String sql = "SELECT id, name, capacity FROM warehouses";
+        
+        try (Connection conn = this.connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") +  "\t" + 
+                                   rs.getString("name") + "\t" +
+                                   rs.getDouble("capacity"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
     
 
