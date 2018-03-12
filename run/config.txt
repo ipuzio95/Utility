@@ -1,0 +1,4 @@
+host=localhost
+dbName=lesson
+user=dba
+password=sql
