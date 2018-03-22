@@ -1,33 +1,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<parent>
-		<groupId>pl.com.lessons.maven</groupId>
-		<artifactId>MLMavenMaster</artifactId>
-		<version>0.13</version>
-		<relativePath/>
-	</parent>
-  <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>pl.com.lessons.maven</groupId>
+        <artifactId>MLMavenMaster</artifactId>
+        <version>0.13</version>
+        <relativePath/>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
   
-  <properties>
+    <properties>
         <main.class>pl.com.lessons.test.Main</main.class>
         <java.version>1.8</java.version>
         <jdk.home>${JDK_HOME}</jdk.home>
     </properties>
   
   
-  <groupId>pl.com.lessons.utility</groupId>
-  <artifactId>Utility</artifactId>
-  <version>0.0.7</version>
-  <dependencies>
+    <groupId>pl.com.lessons.utility</groupId>
+    <artifactId>Utility</artifactId>
+    <version>0.0.7</version>
+    <dependencies>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.11</version>
         </dependency>
         <dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>5.1.6</version>
-		</dependency>
-  </dependencies>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+    </dependencies>
 </project>
